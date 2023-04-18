@@ -1,7 +1,6 @@
 
-
-def test_register(test_client):
-    response = test_client.post('/auth/register', json={
+def test_register(user_client):
+    response = user_client.post('/auth/register', json={
         'email': 'dead@pool.com',
         'password': 'chimichangas4life',
     })

@@ -6,4 +6,3 @@ paths =
 max-complexity = 10
 exclude = 
    tests
-   alembic/versions/*.py
