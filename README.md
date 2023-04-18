@@ -1,9 +1,8 @@
 # QRKot
 
 [![Python](https://img.shields.io/badge/-Python-464646?style=flat&logo=Python&logoColor=ffffff&color=043A6B)](https://www.python.org/)
-[![Git](https://img.shields.io/badge/git-464646?style=flat&logo=git&logoColor=ffffff&color=043A6B)]
-[![FastAPI](https://img.shields.io/badge/FastAPI-464646?style=flat&logo=FastAPI&logoColor=ffffff&color=043A6B)]
-(https://fastapi.tiangolo.com/)
+[![Git](https://img.shields.io/badge/-Git-464646?style=flat&logo=Git&logoColor=ffffff&color=043A6B)](https://www.git-scm.com/)
+[![FastAPI](https://img.shields.io/badge/FastAPI-464646?style=flat&logo=FastAPI&logoColor=ffffff&color=043A6B)](https://fastapi.tiangolo.com/)
 [![SQLAlchemy](https://img.shields.io/badge/-SQLAlchemy-464646?style=flat&logo=SQLAlchemy&logoColor=ffffff&color=043A6B)](https://www.postgresql.org/)
 
 Проект QRKot — приложение для Благотворительного фонда поддержки котиков. Фонд собирает пожертвования на различные целевые проекты: на медицинское обслуживание нуждающихся хвостатых, на обустройство кошачьей колонии в подвале, на корм оставшимся без попечения кошкам — на любые цели, связанные с поддержкой кошачьей популяции.
