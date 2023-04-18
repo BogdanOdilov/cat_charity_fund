@@ -13,6 +13,3 @@ class UserUpdate(models.BaseUserUpdate):
     (в том числе и пароль). Все поля опциональны.
     '''
     pass
-
-
-
