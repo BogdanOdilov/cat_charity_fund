@@ -19,6 +19,7 @@ class UserUpdate(schemas.BaseUserUpdate):
     '''
     pass
 
+
 class UserDB(UserRead, schemas.BaseUser[int]):
     '''Cхема, описывающая модель в БД; пароль хранится в захэшированном
     виде в поле hashed_password.
