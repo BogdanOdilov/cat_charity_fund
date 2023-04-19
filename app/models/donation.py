@@ -1,10 +1,9 @@
-from fastapi_users_db_sqlalchemy.guid import GUID
-from sqlalchemy import Column, ForeignKey, Text
+from sqlalchemy import Column, ForeignKey, Integer, Text
 
-from .abstract_base import AbstractBase
+from .abstract import Abstract
 
 
-class Donation(AbstractBase):
+class Donation(Abstract):
     '''Модель пожертвований таблицы donation.'''
-    user_id = Column(GUID, ForeignKey('user.id'))
+    user_id = Column(Integer, ForeignKey('user.id'))
     comment = Column(Text)

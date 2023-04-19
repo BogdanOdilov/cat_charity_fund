@@ -1,11 +1,10 @@
 from datetime import datetime
 from typing import Optional
 
+from app.models import User
 from fastapi.encoders import jsonable_encoder
-from sqlalchemy import select, asc
+from sqlalchemy import asc, select
 from sqlalchemy.ext.asyncio import AsyncSession
-
-from app.schemas.user import UserDB
 
 
 class CRUDBase:
@@ -48,16 +47,15 @@ class CRUDBase:
         )
         return objs.all()
 
-    async def create_obj_with_datetime(
-        self,
-        obj_in,
-        session: AsyncSession,
-        user: Optional[UserDB] = None,
-        create_date: bool = True
+    async def create(
+            self,
+            obj_in,
+            session: AsyncSession,
+            user: Optional[User] = None,
+            create_date: bool = True
     ):
         '''Сохраняет запись в БД с датой создания.'''
         obj_in_data = obj_in.dict()
-
         if create_date:
             obj_in_data['create_date'] = datetime.now()
         if user is not None:

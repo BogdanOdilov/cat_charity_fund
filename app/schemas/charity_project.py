@@ -5,30 +5,34 @@ from pydantic import BaseModel, Extra, Field, PositiveInt
 
 
 class CharityProjectBase(BaseModel):
-    name: str = Field(..., title='Название проекта', min_length=1, max_length=100)
-    description: str = Field(..., title='Описание', min_length=1)
-    full_amount: PositiveInt = Field(..., title='Сумма пожертвования')
+    name: Optional[str] = Field(None, max_length=100)
+    description: Optional[str] = Field(None)
+    full_amount: Optional[PositiveInt] = Field(None)
 
     class Config:
         extra = Extra.forbid
+        min_anystr_length = 1
 
 
-class CharityProjectCreate(CharityProjectBase):
-    pass
+class CharityProjectCreate(BaseModel):
+    name: str = Field(..., max_length=100)
+    description: str = Field(...)
+    full_amount: PositiveInt = Field(...)
+
+    class Config:
+        min_anystr_length = 1
 
 
-class CharityProjectUpdate(CharityProjectCreate):
-    name: Optional[str] = Field(None, title='Название проекта', min_length=1, max_length=100)
-    description: Optional[str] = Field(None, title='Описание', min_length=1)
-    full_amount: Optional[PositiveInt] = Field(None, title='Сумма пожертвования')
-
-
-class CharityProjectDB(CharityProjectBase):
-    id: PositiveInt = Field(..., title='id проекта')
-    invested_amount: int = Field(..., title='Сумма пожертвования')
-    fully_invested: bool = Field(..., title='Закрыт ли проект')
-    create_date: datetime = Field(..., title='Дата создания проекта')
-    close_date: Optional[datetime] = Field(None, title='Дата закрытия проекта')
+class CharityProjectDB(CharityProjectCreate):
+    id: int
+    invested_amount: int = Field(0)
+    fully_invested: bool = Field(False)
+    create_date: datetime
+    close_date: Optional[datetime]
 
     class Config:
         orm_mode = True
+
+
+class CharityProjectUpdate(CharityProjectBase):
+    pass

@@ -1,16 +1,9 @@
 from sqlalchemy import Column, String, Text
 
-from .abstract_base import AbstractBase
+from .abstract import Abstract
 
 
-class CharityProject(AbstractBase):
+class CharityProject(Abstract):
     '''Модель проектов таблицы charityproject.'''
-    name = Column(
-        String(100),
-        unique=True,
-        nullable=False
-    )
-    description = Column(
-        Text,
-        nullable=False,
-    )
+    name = Column(String(100), unique=True, nullable=False)
+    description = Column(Text, nullable=False)

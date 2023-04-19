@@ -1,12 +1,12 @@
 import contextlib
-
-from fastapi_users.manager import UserAlreadyExists
-from pydantic import EmailStr
+import logging
 
 from app.core.config import settings
 from app.core.db import get_async_session
 from app.core.user import get_user_db, get_user_manager
 from app.schemas.user import UserCreate
+from fastapi_users.exceptions import UserAlreadyExists
+from pydantic import EmailStr
 
 get_async_session_context = contextlib.asynccontextmanager(get_async_session)
 get_user_db_context = contextlib.asynccontextmanager(get_user_db)
@@ -31,15 +31,13 @@ async def create_user(
                         )
                     )
     except UserAlreadyExists:
-        pass
+        logging.error('Пользователь уже существует!')
 
 
 async def create_first_superuser():
     """Проверяет указаны ли данные о суперпользователе и создаёт его."""
-    if (
-        settings.first_superuser_email is not None and
-        settings.first_superuser_password is not None
-    ):
+    if (settings.first_superuser_email is not None and
+            settings.first_superuser_password is not None):
         await create_user(
             email=settings.first_superuser_email,
             password=settings.first_superuser_password,
