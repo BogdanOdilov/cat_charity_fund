@@ -12,6 +12,7 @@ app = FastAPI(title=settings.app_title)
 # Подключаем роутер.
 app.include_router(main_router)
 
+
 # При старте приложения запускаем корутину create_first_superuser.
 @app.on_event('startup')
 async def startup():
