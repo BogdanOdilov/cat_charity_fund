@@ -72,7 +72,7 @@ class CRUDBase:
             obj_in,
             session: AsyncSession,
     ):
-        '''Обновление объекта в БД.'''
+        """Обновление объекта в БД."""
         obj_data = jsonable_encoder(db_obj)
         update_data = obj_in.dict(exclude_unset=True)
 
@@ -89,7 +89,7 @@ class CRUDBase:
             db_obj,
             session: AsyncSession,
     ):
-        '''Удаление объекта из БД.'''
+        """Удаление объекта из БД."""
         await session.delete(db_obj)
         await session.commit()
         return db_obj

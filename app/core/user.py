@@ -13,16 +13,17 @@ from fastapi_users.authentication import (AuthenticationBackend,
 from fastapi_users_db_sqlalchemy import SQLAlchemyUserDatabase
 from sqlalchemy.ext.asyncio import AsyncSession
 
+LIFETIME_SECONDS = 3600
 
 async def get_user_db(session: AsyncSession = Depends(get_async_session)):
-    '''Асинхронный генератор, обеспечивает доступ к БД'''
+    """Асинхронный генератор, обеспечивает доступ к БД"""
     yield SQLAlchemyUserDatabase(session, User)
 
 bearer_transport = BearerTransport(tokenUrl='auth/jwt/login')
 
 
 def get_jwt_strategy() -> JWTStrategy:
-    return JWTStrategy(secret=settings.secret, lifetime_seconds=3600)
+    return JWTStrategy(secret=settings.secret, lifetime_seconds=LIFETIME_SECONDS)
 
 
 auth_backend = AuthenticationBackend(
@@ -33,7 +34,7 @@ auth_backend = AuthenticationBackend(
 
 
 class UserManager(IntegerIDMixin, BaseUserManager[User, int]):
-    '''Производит валидацию, верификацию, регистрацию и пр.'''
+    """Производит валидацию, верификацию, регистрацию и пр."""
 
     async def validate_password(
         self,
@@ -56,7 +57,7 @@ class UserManager(IntegerIDMixin, BaseUserManager[User, int]):
 
 
 async def get_user_manager(user_db=Depends(get_user_db)):
-    '''Возвращает объект класса UserManager'''
+    """Возвращает объект класса UserManager"""
     yield UserManager(user_db)
 
 fastapi_users = FastAPIUsers[User, int](
