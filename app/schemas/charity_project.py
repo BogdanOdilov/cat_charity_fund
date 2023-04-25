@@ -5,6 +5,7 @@ from pydantic import BaseModel, Extra, Field, PositiveInt
 
 NAME_LENGTH = 100
 
+
 class CharityProjectBase(BaseModel):
     name: Optional[str] = Field(None, max_length=NAME_LENGTH)
     description: Optional[str] = Field(None)

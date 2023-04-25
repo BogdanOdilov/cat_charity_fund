@@ -15,6 +15,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 LIFETIME_SECONDS = 3600
 
+
 async def get_user_db(session: AsyncSession = Depends(get_async_session)):
     """Асинхронный генератор, обеспечивает доступ к БД"""
     yield SQLAlchemyUserDatabase(session, User)
